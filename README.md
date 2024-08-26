@@ -1,5 +1,7 @@
 <div align="center">
 
+## Personal fork of ThePrimeagen/harpoon's harpoon2 branch to fix a problem I had with ftplugin
+
 # Harpoon
 ##### Getting you where you want with the fewest keystrokes.
 
@@ -35,21 +37,15 @@ tmux windows, or dream up your own custom action and execute with a single key
 
 ## ⇁ Installation
 * neovim 0.8.0+ required
-* install using your favorite plugin manager (i am using `packer` in this case)
-```lua
-use "nvim-lua/plenary.nvim" -- don't forget to add this one if you don't have it yet!
-use {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    requires = { {"nvim-lua/plenary.nvim"} }
-}
-```
 * install using [lazy.nvim](https://github.com/folke/lazy.nvim)
 ```lua
 {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
+    "vaengir/harpoon",
+    version = "*",
     dependencies = { "nvim-lua/plenary.nvim" }
+    config = function()
+        require("harpoon"):setup()
+    end
 }
 ```
 
