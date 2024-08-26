@@ -113,12 +113,6 @@ function M.get_default_config()
                     -- bufnr = vim.fn.bufnr(list_item.value, true)
                     bufnr = vim.fn.bufadd(list_item.value)
                 end
-                if not vim.api.nvim_buf_is_loaded(bufnr) then
-                    vim.fn.bufload(bufnr)
-                    vim.api.nvim_set_option_value("buflisted", true, {
-                        buf = bufnr,
-                    })
-                end
 
                 if options.vsplit then
                     vim.cmd("vsplit")
@@ -129,6 +123,10 @@ function M.get_default_config()
                 end
 
                 vim.api.nvim_set_current_buf(bufnr)
+                vim.fn.bufload(bufnr)
+                vim.api.nvim_set_option_value("buflisted", true, {
+                    buf = bufnr,
+                })
 
                 if set_position then
                     local lines = vim.api.nvim_buf_line_count(bufnr)
